@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMT MUN 4.0</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="curtain-preloader" class="curtain-preloader">
+        <div class="curtain curtain-left"></div>
+        <div class="curtain curtain-right"></div>
+        <img src="logo-new.png" alt="UMT MUN Logo" class="curtain-logo" />
+    </div>
+    <div class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <img src="logo-new.png" alt="UMT MUN Logo" class="hero-logo" />
+            <h1 class="hero-title">UMT MUN 4.0</h1>
+            <div class="hero-dates">25th, 26th, 27th of September 2025</div>
+            <button class="register-btn" id="registerBtn">Register Now</button>
+        </div>
+    </div>
+
+    <section class="about-section" id="about">
+        <h2>About UMT MUN</h2>
+        <p>UMT MUN is the official Model United Nations conference hosted by the University of Management and
+            Technology. It brings together passionate delegates from across the nation to debate pressing global issues,
+            develop diplomatic skills, and foster youth leadership through dynamic committee sessions and cultural
+            exchange.</p>
+    </section>
+
+    <section class="timer-section" id="timer">
+        <h2>Countdown to UMT MUN 4.0</h2>
+        <div class="countdown" id="countdown"></div>
+    </section>
+
+    <section class="committees-section" id="committees">
+        <h2>Committees</h2>
+        <img src="committees.jpg" alt="UMT MUN Committees" class="committees-img" />
+    </section>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Register As</h2>
+            <div id="registration-cards" class="registration-cards"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        &copy; 2024 UMT MUN. All rights reserved.
+        <span class="footer-icons">
+            <a href="https://www.instagram.com/umt_mun/" target="_blank" class="footer-icon" aria-label="Instagram">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+                </svg>
+            </a>
+            <a href="mailto:mun@umt.edu.pk" class="footer-icon" aria-label="Email">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <polyline points="22,6 12,13 2,6" />
+                </svg>
+            </a>
+        </span>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
