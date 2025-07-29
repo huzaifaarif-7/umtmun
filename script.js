@@ -4,13 +4,61 @@ const registrationOptions = [
         desc: 'Register as an individual delegate or observer and represent your country at UMT MUN 4.0.',
         url: 'https://tally.so/r/nppWy1',
         action: 'Register',
+        backgroundImage: 'Private observer.jpg',
     },
     {
         title: 'Institutional Delegation',
-        desc: 'Register your institution’s delegation and participate as a team in UMT MUN 4.0.',
+        desc: 'Register your institution\'s delegation and participate as a team in UMT MUN 4.0.',
         url: 'https://tally.so/r/nppB41',
         action: 'Register',
+        backgroundImage: 'intitutional delegation.jpg',
     },
+    {
+        title: 'Secretariat Application',
+        desc: 'Be a part of the UMT MUN 4.0 Secretariat and help us make this event a success',
+        url: 'https://tally.so/r/meWv8l',
+        action: 'Apply',
+        backgroundImage: 'secretariat.jpg',
+    },
+];
+
+const committeeData = [
+    {
+
+        image: 'unsc.jpg',
+        description: 'The United Nations Security Council is the premier body responsible for maintaining international peace and security. Delegates will address critical global security challenges, including conflict resolution, peacekeeping operations, and threats to international peace.',
+        topics: 'AGENDA :TBA'
+    },
+    {
+
+        image: 'unhrc.jpg',
+        description: 'The UN Human Rights Council is dedicated to promoting and protecting human rights worldwide. Delegates will engage in discussions on human rights violations, discrimination, and the protection of vulnerable populations.',
+        topics: 'AGENDA :TBA'
+    },
+    {
+
+        image: 'unw.jpg',
+        description: 'UN Women focuses on gender equality and the empowerment of women and girls globally. Delegates will work on advancing women\'s rights, eliminating gender-based violence, and promoting women\'s participation in decision-making.',
+        topics: 'AGENDA :TBA'
+    },
+    {
+
+        image: 'pna.jpg',
+        description: 'The Pakistan National Assembly Committee in MUN simulates the legislative chamber of Pakistan’s parliament, offering delegates the opportunity to debate, draft, and pass resolutions on pressing national issues. Rooted in real parliamentary procedure, this committee encourages in-depth discussion on domestic policy, governance, and socio-political challenges facing the country',
+        topics: 'AGENDA :TBA.'
+    },
+    {
+
+        image: 'crisis.jpg',
+        description: 'The Crisis Committee simulates emergency situations requiring immediate diplomatic response. Delegates must think on their feet, make quick decisions, and adapt to rapidly evolving scenarios.',
+        topics: 'AGENDA : TBA'
+    },
+    {
+
+        image: 'specpol.jpg',
+        description: 'SPECPOL addresses political questions and decolonization issues. Delegates will discuss self-determination, territorial disputes, and the political aspects of various global challenges.',
+        topics: 'AGENDA :TBA '
+    }
 ];
 
 function updateCountdown() {
@@ -71,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const card = document.createElement('div');
             card.className = 'registration-card';
             card.tabIndex = 0;
+            card.style.backgroundImage = `url('${option.backgroundImage}')`;
             card.innerHTML = `
         <div class="card-title">${option.title}</div>
         <div class="card-desc">${option.desc}</div>
@@ -92,7 +141,57 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Modal logic
+    // Committee grid generation
+    const committeesGrid = document.getElementById('committeesGrid');
+    if (committeesGrid) {
+        committeesGrid.innerHTML = '';
+        committeeData.forEach(committee => {
+            const committeeCard = document.createElement('div');
+            committeeCard.className = 'committee-card';
+            committeeCard.innerHTML = `
+                <img src="${committee.image}" alt="${committee.name}" class="committee-img" />
+                <div class="committee-overlay">
+                
+                </div>
+            `;
+            committeeCard.addEventListener('click', () => {
+                showCommitteeDetails(committee);
+            });
+            committeesGrid.appendChild(committeeCard);
+        });
+    }
+
+    // Committee modal functionality
+    const committeeModal = document.getElementById('committeeModal');
+    const closeCommitteeModal = document.getElementById('closeCommitteeModal');
+    const committeeModalContent = document.getElementById('committeeModalContent');
+
+    function showCommitteeDetails(committee) {
+        committeeModalContent.innerHTML = `
+            <div class="committee-detail-header">
+                <img src="${committee.image}" alt="${committee.name}" class="committee-detail-img" />
+                <div class="committee-detail-title">
+                </div>
+            </div>
+            <div class="committee-detail-content">
+                <p class="committee-description">${committee.description}</p>
+                <p class="committee-topics">${committee.topics}</p>
+            </div>
+        `;
+        committeeModal.style.display = 'flex';
+    }
+
+    closeCommitteeModal.addEventListener('click', function () {
+        committeeModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target === committeeModal) {
+            committeeModal.style.display = 'none';
+        }
+    });
+
+    // Registration modal logic
     const registerBtn = document.getElementById('registerBtn');
     const modal = document.getElementById('modal');
     const closeModal = document.getElementById('closeModal');
