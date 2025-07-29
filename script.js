@@ -181,9 +181,15 @@ document.addEventListener('DOMContentLoaded', function () {
         committeeModal.style.display = 'flex';
     }
 
-    closeCommitteeModal.addEventListener('click', function () {
+    // Enhanced close functionality for mobile compatibility
+    function closeCommitteeModalHandler(e) {
+        e.preventDefault();
+        e.stopPropagation();
         committeeModal.style.display = 'none';
-    });
+    }
+
+    closeCommitteeModal.addEventListener('click', closeCommitteeModalHandler);
+    closeCommitteeModal.addEventListener('touchend', closeCommitteeModalHandler);
 
     window.addEventListener('click', function (event) {
         if (event.target === committeeModal) {
@@ -200,13 +206,19 @@ document.addEventListener('DOMContentLoaded', function () {
         modal.style.display = 'flex';
     });
 
-    closeModal.addEventListener('click', function () {
+    // Enhanced close functionality for mobile compatibility
+    function closeModalHandler(e) {
+        e.preventDefault();
+        e.stopPropagation();
         modal.style.display = 'none';
-    });
+    }
+
+    closeModal.addEventListener('click', closeModalHandler);
+    closeModal.addEventListener('touchend', closeModalHandler);
 
     window.addEventListener('click', function (event) {
         if (event.target === modal) {
             modal.style.display = 'none';
         }
     });
-}); 
+});  
