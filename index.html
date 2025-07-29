@@ -39,8 +39,18 @@
 
     <section class="committees-section" id="committees">
         <h2>Committees</h2>
-        <img src="committees.jpg" alt="UMT MUN Committees" class="committees-img" />
+        <div class="committees-grid" id="committeesGrid">
+            <!-- Committee cards will be dynamically generated -->
+        </div>
     </section>
+
+    <!-- Committee Details Modal -->
+    <div class="committee-modal" id="committeeModal">
+        <div class="committee-modal-content">
+            <span class="committee-close" id="closeCommitteeModal">&times;</span>
+            <div id="committeeModalContent"></div>
+        </div>
+    </div>
 
     <div class="modal" id="modal">
         <div class="modal-content">
@@ -51,7 +61,7 @@
     </div>
 
     <footer class="footer">
-        &copy; 2024 UMT MUN. All rights reserved.
+        &copy; 2025 UMT MUN. All rights reserved.
         <span class="footer-icons">
             <a href="https://www.instagram.com/umt_mun/" target="_blank" class="footer-icon" aria-label="Instagram">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
