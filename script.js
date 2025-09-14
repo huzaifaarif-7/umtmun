@@ -24,40 +24,40 @@ const registrationOptions = [
 
 const committeeData = [
     {
-
+        name: 'UNSC',
         image: 'unsc.jpg',
         description: 'The United Nations Security Council is the premier body responsible for maintaining international peace and security. Delegates will address critical global security challenges, including conflict resolution, peacekeeping operations, and threats to international peace.',
-        topics: 'AGENDA :TBA'
+        studyGuide: 'UNSC_GUIDE.pdf'
     },
     {
-
+        name: 'UNHRC',
         image: 'unhrc.jpg',
         description: 'The UN Human Rights Council is dedicated to promoting and protecting human rights worldwide. Delegates will engage in discussions on human rights violations, discrimination, and the protection of vulnerable populations.',
-        topics: 'AGENDA :TBA'
+        studyGuide: 'UNHRC_GUIDE.pdf'
     },
     {
-
+        name: 'UNW',
         image: 'unw.jpg',
         description: 'UN Women focuses on gender equality and the empowerment of women and girls globally. Delegates will work on advancing women\'s rights, eliminating gender-based violence, and promoting women\'s participation in decision-making.',
-        topics: 'AGENDA :TBA'
+        studyGuide: 'UNW_GUIDE.pdf'
     },
     {
-
+        name: 'PNA',
         image: 'pna.jpg',
-        description: 'The Pakistan National Assembly Committee in MUN simulates the legislative chamber of Pakistan’s parliament, offering delegates the opportunity to debate, draft, and pass resolutions on pressing national issues. Rooted in real parliamentary procedure, this committee encourages in-depth discussion on domestic policy, governance, and socio-political challenges facing the country',
-        topics: 'AGENDA :TBA.'
+        description: 'The Pakistan National Assembly Committee in MUN simulates the legislative chamber of Pakistan\'s parliament, offering delegates the opportunity to debate, draft, and pass resolutions on pressing national issues. Rooted in real parliamentary procedure, this committee encourages in-depth discussion on domestic policy, governance, and socio-political challenges facing the country',
+        studyGuide: 'PNA_GUIDE.pdf'
     },
     {
-
+        name: 'Crisis',
         image: 'crisis.jpg',
         description: 'The Crisis Committee simulates emergency situations requiring immediate diplomatic response. Delegates must think on their feet, make quick decisions, and adapt to rapidly evolving scenarios.',
-        topics: 'AGENDA : TBA'
+        studyGuide: null
     },
     {
-
+        name: 'SPECPOL',
         image: 'specpol.jpg',
         description: 'SPECPOL addresses political questions and decolonization issues. Delegates will discuss self-determination, territorial disputes, and the political aspects of various global challenges.',
-        topics: 'AGENDA :TBA '
+        studyGuide: 'SPECPOL_GUIDE.pdf'
     }
 ];
 
@@ -167,15 +167,36 @@ document.addEventListener('DOMContentLoaded', function () {
     const committeeModalContent = document.getElementById('committeeModalContent');
 
     function showCommitteeDetails(committee) {
+        const studyGuideSection = committee.studyGuide
+            ? `<div class="study-guide-section">
+                <h3>Study Guide</h3>
+                <p>Download the study guide to prepare for this committee:</p>
+                <a href="${committee.studyGuide}" class="study-guide-btn" download target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10,9 9,9 8,9"/>
+                    </svg>
+                    Download Study Guide
+                </a>
+            </div>`
+            : `<div class="study-guide-section">
+                <h3>Study Guide</h3>
+                <p class="study-guide-coming-soon">Study guide coming soon!</p>
+            </div>`;
+
         committeeModalContent.innerHTML = `
             <div class="committee-detail-header">
                 <img src="${committee.image}" alt="${committee.name}" class="committee-detail-img" />
                 <div class="committee-detail-title">
+                    <h2>${committee.name}</h2>
                 </div>
             </div>
             <div class="committee-detail-content">
                 <p class="committee-description">${committee.description}</p>
-                <p class="committee-topics">${committee.topics}</p>
+                ${studyGuideSection}
             </div>
         `;
         committeeModal.style.display = 'flex';
@@ -221,4 +242,4 @@ document.addEventListener('DOMContentLoaded', function () {
             modal.style.display = 'none';
         }
     });
-});  
+});   
