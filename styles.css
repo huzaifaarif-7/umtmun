@@ -344,6 +344,68 @@ body {
     border-left: 4px solid #b03a5b;
 }
 
+/* Study Guide Section Styles */
+.study-guide-section {
+    margin-top: 24px;
+    padding: 20px;
+    background: rgba(124, 34, 53, 0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(176, 58, 91, 0.3);
+}
+
+.study-guide-section h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ffb6d5;
+    margin: 0 0 12px 0;
+    letter-spacing: 1px;
+}
+
+.study-guide-section p {
+    font-size: 1rem;
+    color: #fff;
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+}
+
+.study-guide-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(90deg, #7c2235 0%, #b03a5b 100%);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(176, 58, 91, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.study-guide-btn:hover {
+    background: linear-gradient(90deg, #b03a5b 0%, #7c2235 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(176, 58, 91, 0.5);
+}
+
+.study-guide-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(176, 58, 91, 0.3);
+}
+
+.study-guide-coming-soon {
+    font-style: italic;
+    color: #ffb6d5 !important;
+    text-align: center;
+    padding: 16px;
+    background: rgba(176, 58, 91, 0.1);
+    border-radius: 8px;
+    border: 1px dashed rgba(176, 58, 91, 0.5);
+}
+
 .modal {
     display: none;
     position: fixed;
