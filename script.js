@@ -181,6 +181,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     </svg>
                     Download Study Guide
                 </a>
+                </div>`;
+
          
 
         committeeModalContent.innerHTML = `
