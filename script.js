@@ -181,11 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </svg>
                     Download Study Guide
                 </a>
-            </div>`
-            : `<div class="study-guide-section">
-                <h3>Study Guide</h3>
-                <p class="study-guide-coming-soon">Study guide coming soon!</p>
-            </div>`;
+         
 
         committeeModalContent.innerHTML = `
             <div class="committee-detail-header">
