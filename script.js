@@ -167,36 +167,38 @@ document.addEventListener('DOMContentLoaded', function () {
     const committeeModalContent = document.getElementById('committeeModalContent');
 
     function showCommitteeDetails(committee) {
+        const committeeModal = document.getElementById('committeeModal');
+        const committeeModalContent = document.getElementById('committeeModalContent');
+
         const studyGuideSection = committee.studyGuide
             ? `<div class="study-guide-section">
-                <h3>Study Guide</h3>
-                <p>Download the study guide to prepare for this committee:</p>
-                <a href="${committee.studyGuide}" class="study-guide-btn" download target="_blank">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14,2 14,8 20,8"/>
-                        <line x1="16" y1="13" x2="8" y2="13"/>
-                        <line x1="16" y1="17" x2="8" y2="17"/>
-                        <polyline points="10,9 9,9 8,9"/>
-                    </svg>
-                    Download Study Guide
-                </a>
-                </div>`;
-
-         
+            <h3>Study Guide</h3>
+            <p>Download the study guide to prepare for this committee:</p>
+            <a href="${committee.studyGuide}" class="study-guide-btn" download target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14,2 14,8 20,8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10,9 9,9 8,9"/>
+                </svg>
+                Download Study Guide
+            </a>
+        </div>`
+            : '';
 
         committeeModalContent.innerHTML = `
-            <div class="committee-detail-header">
-                <img src="${committee.image}" alt="${committee.name}" class="committee-detail-img" />
-                <div class="committee-detail-title">
-                    <h2>${committee.name}</h2>
-                </div>
+        <div class="committee-detail-header">
+            <img src="${committee.image}" alt="${committee.name}" class="committee-detail-img" />
+            <div class="committee-detail-title">
+                <h2>${committee.name}</h2>
             </div>
-            <div class="committee-detail-content">
-                <p class="committee-description">${committee.description}</p>
-                ${studyGuideSection}
-            </div>
-        `;
+        </div>
+        <div class="committee-detail-content">
+            <p class="committee-description">${committee.description}</p>
+            ${studyGuideSection}
+        </div>
+    `;
         committeeModal.style.display = 'flex';
     }
 
@@ -241,3 +243,4 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });   
+
