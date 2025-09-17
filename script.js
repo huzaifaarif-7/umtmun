@@ -51,7 +51,7 @@ const committeeData = [
         name: 'Crisis',
         image: 'crisis.jpg',
         description: 'The Crisis Committee simulates emergency situations requiring immediate diplomatic response. Delegates must think on their feet, make quick decisions, and adapt to rapidly evolving scenarios.',
-        studyGuide: null
+        studyGuide: 'CRISIS_GUIDE.pdf'
     },
     {
         name: 'SPECPOL',
