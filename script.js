@@ -1,28 +1,28 @@
-// ========================================================
+/ ========================================================
 //  ASTROLABE DIAL  —  scroll-driven canvas background
 // ========================================================
 (function () {
     const canvas = document.getElementById('dialCanvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-
+ 
     let W, H, cx, cy, baseR;
     let scrollY = 0;
     let targetRot = 0;
     let currentRot = 0;
     let raf;
-
+ 
     // Colour palette — matches theme image
     const C = {
-        ring:    'rgba(80,140,210,0.18)',
-        ringBrt: 'rgba(100,170,240,0.32)',
-        tick:    'rgba(90,150,220,0.35)',
-        tickBrt: 'rgba(140,200,255,0.55)',
-        text:    'rgba(110,165,230,0.38)',
-        gear:    'rgba(70,130,200,0.22)',
-        glow:    'rgba(40,90,180,0.12)',
+        ring:    'rgba(80,145,215,0.28)',
+        ringBrt: 'rgba(110,180,255,0.50)',
+        tick:    'rgba(90,155,225,0.45)',
+        tickBrt: 'rgba(150,210,255,0.65)',
+        text:    'rgba(120,175,235,0.50)',
+        gear:    'rgba(75,140,210,0.32)',
+        glow:    'rgba(30,80,170,0.18)',
     };
-
+ 
     function resize() {
         W = canvas.width  = window.innerWidth;
         H = canvas.height = window.innerHeight;
@@ -30,7 +30,7 @@
         cy = H / 2;
         baseR = Math.min(W, H) * 0.42;
     }
-
+ 
     // ---- drawing helpers ----
     function ring(x, y, r, color, lw) {
         ctx.beginPath();
@@ -39,7 +39,7 @@
         ctx.lineWidth = lw;
         ctx.stroke();
     }
-
+ 
     function tickMarks(x, y, r, count, innerFrac, color, lw) {
         ctx.strokeStyle = color;
         ctx.lineWidth = lw;
@@ -52,7 +52,7 @@
             ctx.stroke();
         }
     }
-
+ 
     function romanLabel(x, y, r, rot) {
         const numerals = ['XII','I','II','III','IV','V','VI','VII','VIII','IX','X','XI'];
         ctx.fillStyle = C.text;
@@ -70,7 +70,7 @@
             ctx.restore();
         }
     }
-
+ 
     function zodiacSymbols(x, y, r, rot) {
         const symbols = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
         ctx.fillStyle = C.text;
@@ -84,7 +84,7 @@
                 y + Math.sin(a) * r);
         }
     }
-
+ 
     function gearTeeth(x, y, r, teeth, rot, color) {
         const toothH = r * 0.055;
         const toothW = (Math.PI * 2 / teeth) * 0.35;
@@ -102,7 +102,7 @@
         }
         ctx.stroke();
     }
-
+ 
     function spoke(x, y, r, count, rot, color, lw) {
         ctx.strokeStyle = color;
         ctx.lineWidth = lw;
@@ -114,7 +114,7 @@
             ctx.stroke();
         }
     }
-
+ 
     function radialGlow(x, y, r, color) {
         const g = ctx.createRadialGradient(x, y, 0, x, y, r);
         g.addColorStop(0, color);
@@ -124,69 +124,79 @@
         ctx.arc(x, y, r, 0, Math.PI * 2);
         ctx.fill();
     }
-
+ 
     // ---- draw one complete dial at (x,y), scaled by `scale` ----
     function drawDial(x, y, scale, rot, clockwise, alpha) {
         ctx.save();
         ctx.globalAlpha = alpha;
         const r = baseR * scale;
         const dir = clockwise ? 1 : -1;
-
+ 
         // Ambient glow
         radialGlow(x, y, r * 1.15, C.glow);
-
+ 
         // Outer gear ring (rotates with scroll)
         gearTeeth(x, y, r * 1.02, Math.round(60 * scale), rot * dir, C.gear);
         ring(x, y, r * 1.02, C.ring, 0.8);
-
+ 
         // Outer ring with major & minor ticks
         ring(x, y, r, C.ringBrt, 1.2);
         tickMarks(x, y, r, 60, 0.94, C.tick, 0.8);       // minute ticks
         tickMarks(x, y, r, 12, 0.88, C.tickBrt, 1.5);    // hour ticks
-
+ 
         // Roman numeral ring (counter-rotates slightly)
         romanLabel(x, y, r * 0.83, rot * dir * -0.4);
-
+ 
         // Zodiac band (rotates opposite to main)
         ring(x, y, r * 0.73, C.ring, 0.8);
         ring(x, y, r * 0.68, C.ring, 0.5);
         zodiacSymbols(x, y, r * 0.705, rot * dir * 0.6);
-
+ 
         // Inner tick band
         tickMarks(x, y, r * 0.68, 36, 0.94, C.tick, 0.7);
-
+ 
         // Mid-ring decorative
         ring(x, y, r * 0.58, C.ring, 0.8);
         tickMarks(x, y, r * 0.58, 24, 0.90, C.tick, 0.8);
-
+ 
         // Spokes (like the astrolabe rete)
         spoke(x, y, r * 0.55, 8, rot * dir * 0.5, C.ring, 0.7);
-
+ 
         // Inner gear ring (counter-rotates)
         gearTeeth(x, y, r * 0.44, Math.round(36 * scale), rot * dir * -1.3, C.gear);
         ring(x, y, r * 0.44, C.ring, 0.8);
         tickMarks(x, y, r * 0.44, 48, 0.90, C.tick, 0.6);
-
+ 
         // Innermost bright ring
         ring(x, y, r * 0.30, C.ringBrt, 1);
         tickMarks(x, y, r * 0.30, 12, 0.86, C.tickBrt, 1);
-
+ 
         // Hub dot
         ctx.beginPath();
         ctx.arc(x, y, r * 0.035, 0, Math.PI * 2);
         ctx.fillStyle = C.ringBrt;
         ctx.fill();
-
+ 
         ctx.restore();
     }
-
+ 
     // ---- main render ----
     function draw() {
-        ctx.clearRect(0, 0, W, H);
-
+        // Paint solid navy base first — canvas IS the background
+        ctx.fillStyle = '#060f24';
+        ctx.fillRect(0, 0, W, H);
+ 
+        // Subtle radial glow in centre
+        const grd = ctx.createRadialGradient(W/2, H*0.45, 0, W/2, H*0.45, Math.min(W,H)*0.65);
+        grd.addColorStop(0,   'rgba(12,38,90,0.55)');
+        grd.addColorStop(0.5, 'rgba(8,22,55,0.3)');
+        grd.addColorStop(1,   'transparent');
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, W, H);
+ 
         // Lerp rotation toward target for smooth feel
         currentRot += (targetRot - currentRot) * 0.06;
-
+ 
         // --- DIAL 1: large, bottom-left (matches theme image astrolabe) ---
         drawDial(
             W * 0.12,   // x — left edge, partially off-screen
@@ -194,9 +204,9 @@
             0.85,       // scale
             currentRot,
             true,       // clockwise
-            0.9
+            1.0
         );
-
+ 
         // --- DIAL 2: medium, top-left (clock face from theme) ---
         drawDial(
             W * 0.06,
@@ -204,9 +214,9 @@
             0.55,
             currentRot * 1.2,
             false,   // counter-clockwise
-            0.75
+            0.88
         );
-
+ 
         // --- DIAL 3: small, right (clock face right-side in theme) ---
         drawDial(
             W * 0.94,
@@ -214,12 +224,12 @@
             0.45,
             currentRot * 0.8,
             true,
-            0.65
+            0.80
         );
-
+ 
         raf = requestAnimationFrame(draw);
     }
-
+ 
     // ---- scroll listener — drives rotation ----
     function onScroll() {
         scrollY = window.scrollY || document.documentElement.scrollTop;
@@ -228,16 +238,16 @@
         // Full page scroll = 1.5 full rotations
         targetRot = progress * Math.PI * 3;
     }
-
+ 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', () => { resize(); }, { passive: true });
-
+ 
     resize();
     onScroll();
     draw();
 })();
-
-
+ 
+ 
 // ========================================================
 //  INTRO ANIMATION
 // ========================================================
@@ -259,7 +269,7 @@ function createParticles() {
         container.appendChild(p);
     }
 }
-
+ 
 function runIntroAnimation() {
     const overlay = document.getElementById('intro-overlay');
     if (!overlay) return;
@@ -269,8 +279,8 @@ function runIntroAnimation() {
         setTimeout(() => { overlay.style.display = 'none'; }, 850);
     }, 3200);
 }
-
-
+ 
+ 
 // ========================================================
 //  COUNTDOWN
 // ========================================================
@@ -279,12 +289,12 @@ function updateCountdown() {
     const now  = new Date();
     let diff = eventDate - now;
     if (diff < 0) diff = 0;
-
+ 
     const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours   = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
-
+ 
     const el = document.getElementById('countdown');
     if (el) {
         el.innerHTML = `
@@ -295,8 +305,8 @@ function updateCountdown() {
         `;
     }
 }
-
-
+ 
+ 
 // ========================================================
 //  REGISTER MODAL
 // ========================================================
@@ -305,9 +315,9 @@ function initRegisterModal() {
     const modal       = document.getElementById('modal');
     const closeModal  = document.getElementById('closeModal');
     if (!registerBtn || !modal || !closeModal) return;
-
+ 
     registerBtn.addEventListener('click', () => { modal.style.display = 'flex'; });
-
+ 
     function closeHandler(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -317,8 +327,8 @@ function initRegisterModal() {
     closeModal.addEventListener('touchend', closeHandler);
     window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
 }
-
-
+ 
+ 
 // ========================================================
 //  INIT
 // ========================================================
@@ -328,3 +338,4 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateCountdown, 1000);
     initRegisterModal();
 });
+ 
