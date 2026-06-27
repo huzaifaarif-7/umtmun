@@ -275,7 +275,7 @@ function runIntroAnimation() {
 //  COUNTDOWN
 // ========================================================
 function updateCountdown() {
-    const eventDate = new Date('2025-09-10T09:00:00');
+    const eventDate = new Date('2026-09-10T09:00:00');
     const now  = new Date();
     let diff = eventDate - now;
     if (diff < 0) diff = 0;
