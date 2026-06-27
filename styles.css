@@ -89,12 +89,12 @@ body {
 }
 
 .intro-logo {
-    width: 200px;
-    max-width: 50vw;
+    width: 300px;
+    max-width: 65vw;
     opacity: 0;
     transform: scale(0.3) rotate(-180deg);
     animation: spinIn 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
-    filter: drop-shadow(0 0 30px rgba(100, 170, 255, 0.7));
+    filter: drop-shadow(0 0 40px rgba(100, 170, 255, 0.85));
     position: relative;
     z-index: 2;
 }
@@ -108,10 +108,10 @@ body {
 
 .intro-glow {
     position: absolute;
-    width: 220px;
-    height: 220px;
+    width: 340px;
+    height: 340px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(50, 120, 200, 0.4) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(50, 120, 200, 0.45) 0%, transparent 70%);
     animation: pulseGlow 2s ease-in-out infinite;
     opacity: 0;
     animation-delay: 1.4s;
@@ -168,18 +168,75 @@ body {
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: url('background.jpg') center center/cover no-repeat;
     z-index: 0;
-    filter: brightness(0.35) saturate(0.7);
+    /* Deep navy base matching the theme */
+    background:
+        /* Faint star field */
+        radial-gradient(1px 1px at 12% 18%, rgba(200,220,255,0.55) 0%, transparent 0%),
+        radial-gradient(1px 1px at 27% 44%, rgba(200,220,255,0.4)  0%, transparent 0%),
+        radial-gradient(1px 1px at 41% 9%,  rgba(200,220,255,0.45) 0%, transparent 0%),
+        radial-gradient(1px 1px at 58% 33%, rgba(200,220,255,0.35) 0%, transparent 0%),
+        radial-gradient(1px 1px at 73% 61%, rgba(200,220,255,0.5)  0%, transparent 0%),
+        radial-gradient(1px 1px at 85% 22%, rgba(200,220,255,0.4)  0%, transparent 0%),
+        radial-gradient(1px 1px at 91% 78%, rgba(200,220,255,0.35) 0%, transparent 0%),
+        radial-gradient(1px 1px at 6%  88%, rgba(200,220,255,0.45) 0%, transparent 0%),
+        radial-gradient(1px 1px at 48% 72%, rgba(200,220,255,0.3)  0%, transparent 0%),
+        radial-gradient(1px 1px at 64% 91%, rgba(200,220,255,0.4)  0%, transparent 0%),
+        /* Large soft glow behind centre */
+        radial-gradient(ellipse 60% 50% at 50% 45%, rgba(20, 60, 130, 0.7) 0%, transparent 80%),
+        /* Ambient cloud-like smear top-right (matches theme mist) */
+        radial-gradient(ellipse 55% 40% at 75% 20%, rgba(30, 55, 110, 0.5) 0%, transparent 70%),
+        /* Bottom vignette */
+        radial-gradient(ellipse 80% 45% at 50% 100%, rgba(3, 8, 20, 0.9) 0%, transparent 70%),
+        /* Base colour */
+        linear-gradient(160deg, #061228 0%, #0b1f45 35%, #071633 65%, #040e22 100%);
+    overflow: hidden;
+}
+
+/* Clock / astrolabe rings rendered as pseudo-elements */
+.hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        /* Large clock face top-left */
+        radial-gradient(circle at 10% 12%, transparent 140px, rgba(60,110,190,0.13) 141px, rgba(60,110,190,0.13) 143px, transparent 144px),
+        radial-gradient(circle at 10% 12%, transparent 110px, rgba(60,110,190,0.1)  111px, rgba(60,110,190,0.1)  112px, transparent 113px),
+        radial-gradient(circle at 10% 12%, transparent  80px, rgba(60,110,190,0.09) 81px,  rgba(60,110,190,0.09)  82px, transparent  83px),
+        /* Astrolabe wheel bottom-left */
+        radial-gradient(circle at 15% 85%, transparent 130px, rgba(50,100,170,0.14) 131px, rgba(50,100,170,0.14) 133px, transparent 134px),
+        radial-gradient(circle at 15% 85%, transparent  95px, rgba(50,100,170,0.11)  96px, rgba(50,100,170,0.11)  97px, transparent  98px),
+        radial-gradient(circle at 15% 85%, transparent  60px, rgba(50,100,170,0.09)  61px, rgba(50,100,170,0.09)  62px, transparent  63px),
+        /* Clock face right */
+        radial-gradient(circle at 88% 30%, transparent 120px, rgba(60,110,190,0.12) 121px, rgba(60,110,190,0.12) 123px, transparent 124px),
+        radial-gradient(circle at 88% 30%, transparent  85px, rgba(60,110,190,0.09)  86px, rgba(60,110,190,0.09)  87px, transparent  88px),
+        /* Subtle world-map texture lines (faint horizontal bands) */
+        repeating-linear-gradient(0deg, transparent, transparent 48px, rgba(60,110,200,0.03) 49px, rgba(60,110,200,0.03) 50px),
+        repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(60,110,200,0.02) 81px, rgba(60,110,200,0.02) 82px);
+    pointer-events: none;
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Zoomed-in zodiac / celestial ring bottom-centre matching theme */
+    background-image:
+        radial-gradient(circle at 30% 95%, transparent 180px, rgba(45, 90, 160, 0.15) 181px, rgba(45,90,160,0.15) 184px, transparent 185px),
+        radial-gradient(circle at 30% 95%, transparent 140px, rgba(45, 90, 160, 0.12) 141px, rgba(45,90,160,0.12) 143px, transparent 144px),
+        radial-gradient(circle at 30% 95%, transparent 100px, rgba(45, 90, 160, 0.1)  101px, rgba(45,90,160,0.1)  102px, transparent 103px),
+        /* Top edge mist */
+        linear-gradient(180deg, rgba(10, 30, 70, 0.45) 0%, transparent 20%);
+    pointer-events: none;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg,
-        rgba(5, 13, 31, 0.3) 0%,
-        rgba(5, 13, 50, 0.55) 50%,
-        rgba(5, 13, 31, 0.9) 100%);
+        rgba(5, 13, 31, 0.1) 0%,
+        rgba(5, 13, 50, 0.15) 50%,
+        rgba(5, 13, 31, 0.6) 100%);
     z-index: 1;
 }
 
@@ -197,10 +254,10 @@ body {
 }
 
 .hero-logo {
-    width: 220px;
-    max-width: 60vw;
-    margin-bottom: 28px;
-    filter: drop-shadow(0 0 28px rgba(80, 150, 230, 0.65));
+    width: 340px;
+    max-width: 72vw;
+    margin-bottom: 24px;
+    filter: drop-shadow(0 0 36px rgba(80, 150, 230, 0.7));
     animation: heroLogoPulse 4s ease-in-out infinite;
 }
 
@@ -220,13 +277,14 @@ body {
 }
 
 .hero-dates {
-    font-family: 'Raleway', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 400;
     margin-bottom: 36px;
-    color: #9ec5e8;
-    letter-spacing: 3px;
+    color: #b8d4ed;
+    letter-spacing: 5px;
     text-transform: uppercase;
+    opacity: 0.9;
 }
 
 .register-btn {
@@ -518,9 +576,9 @@ body {
 /* ===== RESPONSIVE ===== */
 @media (max-width: 700px) {
     .hero-title   { font-size: 2.2rem; letter-spacing: 4px; }
-    .hero-logo    { width: 150px; }
+    .hero-logo    { width: 220px; }
     .intro-title-text { font-size: 1.8rem; }
-    .intro-logo   { width: 130px; }
+    .intro-logo   { width: 200px; }
     .countdown    { gap: 12px; }
     .countdown-item { font-size: 1.6rem; padding: 14px 18px; min-width: 68px; }
     .modal-content { padding: 44px 20px 32px; }
