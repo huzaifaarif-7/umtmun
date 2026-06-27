@@ -170,7 +170,7 @@ body {
     position: absolute;
     inset: 0;
     z-index: 0;
-    /* Star field and glow on top of the canvas dial */
+    /* Star field and glow — now translucent so the canvas dial shows through */
     background:
         radial-gradient(1px 1px at 12% 18%, rgba(200,220,255,0.55) 0%, transparent 0%),
         radial-gradient(1px 1px at 27% 44%, rgba(200,220,255,0.4)  0%, transparent 0%),
@@ -182,10 +182,10 @@ body {
         radial-gradient(1px 1px at 6%  88%, rgba(200,220,255,0.45) 0%, transparent 0%),
         radial-gradient(1px 1px at 48% 72%, rgba(200,220,255,0.3)  0%, transparent 0%),
         radial-gradient(1px 1px at 64% 91%, rgba(200,220,255,0.4)  0%, transparent 0%),
-        radial-gradient(ellipse 60% 50% at 50% 45%, rgba(20, 60, 130, 0.5) 0%, transparent 80%),
-        radial-gradient(ellipse 55% 40% at 75% 20%, rgba(30, 55, 110, 0.35) 0%, transparent 70%),
-        radial-gradient(ellipse 80% 45% at 50% 100%, rgba(3, 8, 20, 0.75) 0%, transparent 70%),
-        linear-gradient(160deg, #061228 0%, #0b1f45 35%, #071633 65%, #040e22 100%);
+        radial-gradient(ellipse 60% 50% at 50% 45%, rgba(20, 60, 130, 0.35) 0%, transparent 80%),
+        radial-gradient(ellipse 55% 40% at 75% 20%, rgba(30, 55, 110, 0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 45% at 50% 100%, rgba(3, 8, 20, 0.5) 0%, transparent 70%),
+        linear-gradient(160deg, rgba(6,18,40,0.55) 0%, rgba(11,31,69,0.5) 35%, rgba(7,22,51,0.55) 65%, rgba(4,14,34,0.6) 100%);
 }
 
 .hero-overlay {
@@ -284,7 +284,7 @@ body {
 
 /* ===== ABOUT ===== */
 .about-section {
-    background: linear-gradient(180deg, #050d1f 0%, #071428 100%);
+    background: linear-gradient(180deg, rgba(5,13,31,0.8) 0%, rgba(7,20,40,0.8) 100%);
     padding: 72px 16px 56px;
     text-align: center;
     position: relative;
@@ -314,7 +314,7 @@ body {
 
 /* ===== TIMER ===== */
 .timer-section {
-    background: linear-gradient(180deg, #071428 0%, #0a1c38 50%, #071428 100%);
+    background: linear-gradient(180deg, rgba(7,20,40,0.8) 0%, rgba(10,28,56,0.8) 50%, rgba(7,20,40,0.8) 100%);
     padding: 60px 16px 56px;
     text-align: center;
     border-top: 1px solid rgba(60, 100, 160, 0.2);
@@ -360,7 +360,7 @@ body {
 
 /* ===== COMMITTEES COMING SOON ===== */
 .committees-section {
-    background: linear-gradient(180deg, #071428 0%, #050d1f 100%);
+    background: linear-gradient(180deg, rgba(7,20,40,0.8) 0%, rgba(5,13,31,0.85) 100%);
     padding: 60px 16px 80px;
     text-align: center;
     position: relative;
@@ -513,7 +513,7 @@ body {
     padding: 22px 0 14px;
     color: #4a7aaa;
     font-size: 0.9rem;
-    background: #050d1f;
+    background: rgba(5,13,31,0.85);
     letter-spacing: 1px;
     border-top: 1px solid rgba(40, 80, 140, 0.2);
     font-family: 'Raleway', sans-serif;
