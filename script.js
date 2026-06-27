@@ -36,7 +36,7 @@ function runIntroAnimation() {
 // ===== COUNTDOWN =====
 function updateCountdown() {
     // UMTMUN V starts 10th September 2025, 9:00 AM
-    const eventDate = new Date('2025-09-10T09:00:00');
+    const eventDate = new Date('2026-09-10T09:00:00');
     const now = new Date();
     let diff = eventDate - now;
     if (diff < 0) diff = 0;
