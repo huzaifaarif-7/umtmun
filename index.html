@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMTMUN V</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Intro Animation Overlay -->
+    <div id="intro-overlay" class="intro-overlay">
+        <div class="intro-particles" id="introParticles"></div>
+        <div class="intro-rings">
+            <div class="intro-ring ring-1"></div>
+            <div class="intro-ring ring-2"></div>
+            <div class="intro-ring ring-3"></div>
+        </div>
+        <div class="intro-logo-wrap">
+            <img src="umtmunlogo.png" alt="UMTMUN Logo" class="intro-logo" id="introLogo" />
+            <div class="intro-glow"></div>
+        </div>
+        <div class="intro-text" id="introText">
+            <span class="intro-title-text">UMTMUN V</span>
+            <span class="intro-sub-text">September 10–12, 2025</span>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="umtmunlogo.png" alt="UMTMUN Logo" class="hero-logo" />
+            <h1 class="hero-title">UMTMUN V</h1>
+            <div class="hero-dates">10th · 11th · 12th September 2025</div>
+            <button class="register-btn" id="registerBtn">Register Now</button>
+        </div>
+    </div>
+
+    <section class="about-section" id="about">
+        <h2>About UMTMUN</h2>
+        <p>UMTMUN is the official Model United Nations conference hosted by the University of Management and
+            Technology. It brings together passionate delegates from across the nation to debate pressing global issues,
+            develop diplomatic skills, and foster youth leadership through dynamic committee sessions and cultural
+            exchange.</p>
+    </section>
+
+    <section class="timer-section" id="timer">
+        <h2>Countdown to UMTMUN V</h2>
+        <div class="countdown" id="countdown"></div>
+    </section>
+
+    <section class="committees-section" id="committees">
+        <h2>Committees</h2>
+        <div class="committees-coming-soon">
+            <div class="coming-soon-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+            </div>
+            <h3>Coming Soon</h3>
+            <p>Committee details will be announced shortly. Stay tuned!</p>
+        </div>
+    </section>
+
+    <!-- Registration Soon Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="reg-soon-icon">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+            </div>
+            <h2>Registration Opening Soon</h2>
+            <p>Registration for UMTMUN V will open shortly. Follow us on Instagram to be the first to know!</p>
+            <a href="https://www.instagram.com/umt_mun/" target="_blank" class="ig-follow-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
+                </svg>
+                Follow @umt_mun
+            </a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        &copy; 2025 UMTMUN. All rights reserved.
+        <span class="footer-icons">
+            <a href="https://www.instagram.com/umt_mun/" target="_blank" class="footer-icon" aria-label="Instagram">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+                </svg>
+            </a>
+            <a href="mailto:mun@umt.edu.pk" class="footer-icon" aria-label="Email">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <polyline points="22,6 12,13 2,6" />
+                </svg>
+            </a>
+        </span>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
