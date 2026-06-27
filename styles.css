@@ -518,6 +518,8 @@ body {
     border-top: 1px solid rgba(40, 80, 140, 0.2);
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
+    position: relative;  
+    z-index: 1;           
 }
 
 .footer-icons {
