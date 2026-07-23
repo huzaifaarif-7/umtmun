@@ -684,3 +684,117 @@ body {
     .intro-text  { opacity: 1; transform: none; }
     .intro-glow  { opacity: 0.4; }
 }
+
+/* === Cosmic clock background (added) === */
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #050b14 url('cosmic-clock-bg.jpg') no-repeat center top fixed !important;
+  background-size: cover !important;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5,11,20,0.55) 0%, rgba(5,11,20,0.75) 45%, rgba(5,11,20,0.92) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-bg { background: none !important; }
+
+.hero-section, .about-section, .timer-section, .committees-section, .footer, .modal-content {
+  position: relative;
+  z-index: 1;
+}
+
+.about-section, .timer-section, .committees-section {
+  background: rgba(10, 22, 38, 0.4) !important;
+  backdrop-filter: blur(2px);
+}
+
+/* === Registration modal (added) === */
+.reg-modal-content {
+  text-align: center !important;
+  max-width: 480px;
+  background: rgba(8, 16, 28, 0.95) !important;
+  border: 1px solid rgba(176, 141, 87, 0.35);
+}
+
+.reg-modal-subtitle {
+  opacity: 0.75;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+  color: #e8e6df !important;
+}
+
+.registration-options {
+  display: flex !important;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.reg-option-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(176, 141, 87, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  text-decoration: none !important;
+  color: #e8e6df !important;
+  transition: all 0.25s ease;
+  text-align: left !important;
+}
+
+.reg-option-btn:hover, .reg-option-btn:visited, .reg-option-btn:active {
+  text-decoration: none !important;
+  color: #e8e6df !important;
+}
+
+.reg-option-btn:hover {
+  background: rgba(176, 141, 87, 0.12) !important;
+  border-color: #b08d57 !important;
+  transform: translateY(-2px);
+}
+
+.reg-option-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(126, 200, 227, 0.15);
+  color: #7ec8e3 !important;
+}
+
+.reg-option-text {
+  display: flex !important;
+  flex-direction: column;
+  flex: 1;
+}
+
+.reg-option-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #e8e6df !important;
+}
+
+.reg-option-desc {
+  font-size: 0.8rem;
+  opacity: 0.65;
+  margin-top: 2px;
+  color: #c9c6bd !important;
+}
+
+.reg-option-arrow {
+  flex-shrink: 0;
+  opacity: 0.5;
+}
