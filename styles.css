@@ -11,32 +11,39 @@
   --text-light: #e8e6df;
 }
 
-html, body {
+html {
   margin: 0;
-  min-height: 100%;
 }
 
 body {
-  background: var(--bg-navy-deep) url('cosmic-clock-bg.jpg') no-repeat center top fixed;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Raleway', 'Segoe UI', Arial, sans-serif;
+  background: var(--bg-navy-deep) url('cosmic-clock-bg.jpg') no-repeat center center fixed;
   background-size: cover;
   color: var(--text-light);
+  overflow-x: hidden;
   position: relative;
 }
 
-/* Dark vignette overlay so content stays legible over the busy clock texture */
+@media (max-width: 700px) {
+  body { background-attachment: scroll; }
+}
+
+/* Subtle vignette — kept light so cosmic-clock-bg stays prominent */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background: linear-gradient(180deg,
-    rgba(5, 11, 20, 0.55) 0%,
-    rgba(5, 11, 20, 0.75) 45%,
-    rgba(5, 11, 20, 0.92) 100%);
+    rgba(5, 11, 20, 0.18) 0%,
+    rgba(5, 11, 20, 0.32) 50%,
+    rgba(5, 11, 20, 0.72) 100%);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Make existing sections transparent so the fixed background shows through */
 .hero-section,
 .about-section,
 .timer-section,
@@ -48,7 +55,7 @@ body::before {
 }
 
 .hero-bg {
-  background: none; /* body now handles the image */
+  background: none;
 }
 
 .about-section,
@@ -61,16 +68,6 @@ body::before {
 .modal-content {
   background: rgba(8, 16, 28, 0.92);
   border: 1px solid rgba(176, 141, 87, 0.35);
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    font-family: 'Raleway', 'Segoe UI', Arial, sans-serif;
-    color: #fff;
-    background: #050d1f;
-    overflow-x: hidden;
 }
 
 /* ===== INTRO ANIMATION ===== */
@@ -231,31 +228,13 @@ body {
     position: absolute;
     inset: 0;
     z-index: 0;
-    /* Star field and glow — now translucent so the canvas dial shows through */
-    background:
-        radial-gradient(1px 1px at 12% 18%, rgba(200,220,255,0.55) 0%, transparent 0%),
-        radial-gradient(1px 1px at 27% 44%, rgba(200,220,255,0.4)  0%, transparent 0%),
-        radial-gradient(1px 1px at 41% 9%,  rgba(200,220,255,0.45) 0%, transparent 0%),
-        radial-gradient(1px 1px at 58% 33%, rgba(200,220,255,0.35) 0%, transparent 0%),
-        radial-gradient(1px 1px at 73% 61%, rgba(200,220,255,0.5)  0%, transparent 0%),
-        radial-gradient(1px 1px at 85% 22%, rgba(200,220,255,0.4)  0%, transparent 0%),
-        radial-gradient(1px 1px at 91% 78%, rgba(200,220,255,0.35) 0%, transparent 0%),
-        radial-gradient(1px 1px at 6%  88%, rgba(200,220,255,0.45) 0%, transparent 0%),
-        radial-gradient(1px 1px at 48% 72%, rgba(200,220,255,0.3)  0%, transparent 0%),
-        radial-gradient(1px 1px at 64% 91%, rgba(200,220,255,0.4)  0%, transparent 0%),
-        radial-gradient(ellipse 60% 50% at 50% 45%, rgba(20, 60, 130, 0.35) 0%, transparent 80%),
-        radial-gradient(ellipse 55% 40% at 75% 20%, rgba(30, 55, 110, 0.25) 0%, transparent 70%),
-        radial-gradient(ellipse 80% 45% at 50% 100%, rgba(3, 8, 20, 0.5) 0%, transparent 70%),
-        linear-gradient(160deg, rgba(6,18,40,0.55) 0%, rgba(11,31,69,0.5) 35%, rgba(7,22,51,0.55) 65%, rgba(4,14,34,0.6) 100%);
+    background: none;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg,
-        rgba(5, 13, 31, 0.1) 0%,
-        rgba(5, 13, 50, 0.15) 50%,
-        rgba(5, 13, 31, 0.6) 100%);
+    background: none;
     z-index: 1;
 }
 
@@ -655,17 +634,6 @@ body {
 
 .footer-icon:hover { color: #9ec5e8; transform: scale(1.18); }
 
-/* ===== SCROLL-DRIVEN ASTROLABE DIAL ===== */
-.dial-canvas {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 1;
-}
-
 /* ===== RESPONSIVE ===== */
 @media (max-width: 700px) {
     .hero-title   { font-size: 2.2rem; letter-spacing: 4px; }
@@ -685,39 +653,7 @@ body {
     .intro-glow  { opacity: 0.4; }
 }
 
-/* === Cosmic clock background (added) === */
-html, body {
-  margin: 0;
-  min-height: 100%;
-}
-
-body {
-  background: #050b14 url('cosmic-clock-bg.jpg') no-repeat center top fixed !important;
-  background-size: cover !important;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(5,11,20,0.55) 0%, rgba(5,11,20,0.75) 45%, rgba(5,11,20,0.92) 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero-bg { background: none !important; }
-
-.hero-section, .about-section, .timer-section, .committees-section, .footer, .modal-content {
-  position: relative;
-  z-index: 1;
-}
-
-.about-section, .timer-section, .committees-section {
-  background: rgba(10, 22, 38, 0.4) !important;
-  backdrop-filter: blur(2px);
-}
-
-/* === Registration modal (added) === */
+/* === Registration modal === */
 .reg-modal-content {
   text-align: center !important;
   max-width: 480px;

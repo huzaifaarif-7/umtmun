@@ -1,9 +1,9 @@
 // ========================================================
-//  ASTROLABE DIAL  —  scroll-driven canvas background
+//  ASTROLABE DIAL  —  removed; background handled by CSS
 // ========================================================
 (function () {
     const canvas = document.getElementById('dialCanvas');
-    if (!canvas) return;
+    if (!canvas) return; // canvas removed from HTML — this block is inert
     const ctx = canvas.getContext('2d');
 
     let W, H, cx, cy, baseR;
@@ -12,15 +12,15 @@
     let currentRot = 0;
     let raf;
 
-    // Colour palette — matches theme image
+    // Colour palette — tuned to sit over the cosmic-clock image
     const C = {
-        ring:    'rgba(80,145,215,0.28)',
-        ringBrt: 'rgba(110,180,255,0.50)',
-        tick:    'rgba(90,155,225,0.45)',
-        tickBrt: 'rgba(150,210,255,0.65)',
-        text:    'rgba(120,175,235,0.50)',
-        gear:    'rgba(75,140,210,0.32)',
-        glow:    'rgba(30,80,170,0.18)',
+        ring:    'rgba(80,145,215,0.40)',
+        ringBrt: 'rgba(130,195,255,0.65)',
+        tick:    'rgba(90,155,225,0.55)',
+        tickBrt: 'rgba(160,220,255,0.80)',
+        text:    'rgba(140,190,245,0.65)',
+        gear:    'rgba(80,150,220,0.45)',
+        glow:    'rgba(20,60,140,0.12)',
     };
 
     function resize() {
@@ -384,14 +384,13 @@
 
     // ---- main render ----
     function draw() {
-        // Paint solid navy base first — canvas IS the background
-        ctx.fillStyle = '#060f24';
-        ctx.fillRect(0, 0, W, H);
+        // Clear to transparent so the body's cosmic-clock-bg.jpg shows through
+        ctx.clearRect(0, 0, W, H);
 
-        // Subtle radial glow in centre
+        // Soft radial tint in centre for depth (low opacity — image provides the base)
         const grd = ctx.createRadialGradient(W/2, H*0.45, 0, W/2, H*0.45, Math.min(W,H)*0.65);
-        grd.addColorStop(0,   'rgba(12,38,90,0.55)');
-        grd.addColorStop(0.5, 'rgba(8,22,55,0.3)');
+        grd.addColorStop(0,   'rgba(12,38,90,0.22)');
+        grd.addColorStop(0.5, 'rgba(8,22,55,0.10)');
         grd.addColorStop(1,   'transparent');
         ctx.fillStyle = grd;
         ctx.fillRect(0, 0, W, H);
@@ -399,12 +398,16 @@
         // Lerp rotation toward target for smooth feel
         currentRot += (targetRot - currentRot) * 0.06;
 
+        // Idle rotation — dials turn slowly even without scrolling (~13 min per revolution)
+        const idleRot = Date.now() * 0.00008;
+        const rot = currentRot + idleRot;
+
         // --- DIAL 1: large, bottom-left (matches theme image astrolabe) ---
         drawDial(
             W * 0.12,   // x — left edge, partially off-screen
             H * 0.82,   // y — low
             0.85,       // scale
-            currentRot,
+            rot,
             true,       // clockwise
             1.0
         );
@@ -414,7 +417,7 @@
             W * 0.06,
             H * 0.15,
             0.55,
-            currentRot * 1.2,
+            rot * 1.2,
             false,   // counter-clockwise
             0.88
         );
@@ -424,7 +427,7 @@
             W * 0.94,
             H * 0.28,
             0.45,
-            currentRot * 0.8,
+            rot * 0.8,
             true,
             0.80
         );
