@@ -298,18 +298,25 @@ body::before {
 }
 
 @media (max-width: 700px) {
-    .hero-gavel-corner {
-        bottom: 12px;
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
+    .hero-gavel-corner { display: none; }
+}
+
+.about-gavel-mobile {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .about-gavel-mobile {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 14px;
     }
 
-    .hero-gavel-img {
-        width: 155px;
-        max-width: 38vw;
+    .about-gavel-mobile img {
+        width: 110px;
+        opacity: 0.55;
+        filter: drop-shadow(0 4px 12px rgba(4, 12, 30, 0.7));
         transform: rotate(-20deg);
-        transform-origin: center bottom;
     }
 }
 
