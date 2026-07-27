@@ -557,20 +557,7 @@ function initRegisterModal() {
 }
 
 
-// ========================================================
-//  HERO PARALLAX  —  content drifts up & fades as you scroll
-// ========================================================
-function initHeroParallax() {
-    const heroContent = document.querySelector('.hero-content');
-    if (!heroContent) return;
-    window.addEventListener('scroll', () => {
-        const y = window.scrollY;
-        const vh = window.innerHeight;
-        if (y < vh) {
-            heroContent.style.transform = `translateY(${y * 0.18}px)`;
-        }
-    }, { passive: true });
-}
+// Hero parallax removed — first page is static on scroll
 
 
 // ========================================================
@@ -625,7 +612,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
     setInterval(updateCountdown, 1000);
     initRegisterModal();
-    initHeroParallax();
     initScrollReveal();
     initHeroParticles();
 });
