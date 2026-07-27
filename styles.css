@@ -298,7 +298,19 @@ body::before {
 }
 
 @media (max-width: 700px) {
-    .hero-gavel-corner { display: none; }
+    .hero-gavel-corner {
+        bottom: 12px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .hero-gavel-img {
+        width: 155px;
+        max-width: 38vw;
+        transform: rotate(-20deg);
+        transform-origin: center bottom;
+    }
 }
 
 .hero-dates {
