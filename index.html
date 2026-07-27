@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UMTMUN V</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <canvas id="dialCanvas" style="position:fixed;inset:0;z-index:0;pointer-events:none;width:100%;height:100%;"></canvas>
+
+    <!-- Intro Animation Overlay -->
+    <div id="intro-overlay" class="intro-overlay">
+        <div class="intro-particles" id="introParticles"></div>
+        <div class="intro-rings">
+            <div class="intro-ring ring-1"></div>
+            <div class="intro-ring ring-2"></div>
+            <div class="intro-ring ring-3"></div>
+        </div>
+        <div class="intro-logo-wrap">
+            <img src="umtmunlogo.png" alt="UMTMUN Logo" class="intro-logo" id="introLogo" />
+            <div class="intro-glow"></div>
+        </div>
+        <div class="intro-text" id="introText">
+            <span class="intro-title-text">UMTMUN V</span>
+            <span class="intro-sub-text">X - XI - XII &nbsp; September 2026</span>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-gavel-corner" aria-hidden="true">
+            <svg width="440" height="300" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Metallic cylinder sheen: dark → bright highlight → dark -->
+                    <linearGradient id="gv-cyl" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%"   stop-color="#1c2e46"/>
+                        <stop offset="12%"  stop-color="#4a7098"/>
+                        <stop offset="38%"  stop-color="#90b8d8"/>
+                        <stop offset="50%"  stop-color="#c8e2f6"/>
+                        <stop offset="62%"  stop-color="#6898b8"/>
+                        <stop offset="88%"  stop-color="#2c4460"/>
+                        <stop offset="100%" stop-color="#101e2c"/>
+                    </linearGradient>
+                    <!-- Dark band gradient -->
+                    <linearGradient id="gv-dark" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%"   stop-color="#0c1824"/>
+                        <stop offset="30%"  stop-color="#2e4868"/>
+                        <stop offset="50%"  stop-color="#5880a4"/>
+                        <stop offset="70%"  stop-color="#1e3450"/>
+                        <stop offset="100%" stop-color="#080e18"/>
+                    </linearGradient>
+                    <!-- Circular face radial gradients -->
+                    <radialGradient id="gv-face-l" cx="65%" cy="32%" r="65%">
+                        <stop offset="0%"   stop-color="#b8d4ee"/>
+                        <stop offset="50%"  stop-color="#507898"/>
+                        <stop offset="100%" stop-color="#182840"/>
+                    </radialGradient>
+                    <radialGradient id="gv-face-r" cx="35%" cy="32%" r="65%">
+                        <stop offset="0%"   stop-color="#b8d4ee"/>
+                        <stop offset="50%"  stop-color="#507898"/>
+                        <stop offset="100%" stop-color="#182840"/>
+                    </radialGradient>
+                </defs>
+
+                <!-- Gavel drawn horizontal then rotated: head lower-left, handle upper-right -->
+                <g transform="rotate(-35 320 170)">
+                    <!-- HANDLE -->
+                    <rect x="272" y="159" width="298" height="22" rx="11" fill="url(#gv-cyl)"/>
+                    <rect x="276" y="163" width="288" height="5" rx="2" fill="rgba(220,242,255,0.28)"/>
+                    <!-- Handle end knob -->
+                    <rect x="555" y="153" width="30" height="34" rx="10" fill="url(#gv-dark)"/>
+                    <rect x="558" y="157" width="22" height="5"  rx="2"  fill="rgba(180,215,250,0.4)"/>
+
+                    <!-- COLLAR -->
+                    <rect x="255" y="151" width="28" height="38" rx="6" fill="url(#gv-dark)"/>
+                    <rect x="253" y="153" width="32" height="5" rx="2.5" fill="rgba(160,204,242,0.55)"/>
+                    <rect x="253" y="163" width="32" height="4" rx="2"   fill="rgba(130,178,222,0.42)"/>
+                    <rect x="253" y="173" width="32" height="4" rx="2"   fill="rgba(130,178,222,0.42)"/>
+                    <rect x="253" y="182" width="32" height="5" rx="2.5" fill="rgba(160,204,242,0.55)"/>
+
+                    <!-- HEAD BODY -->
+                    <rect x="78" y="148" width="180" height="44" fill="url(#gv-cyl)"/>
+                    <rect x="82" y="154" width="168" height="8" rx="4" fill="rgba(215,240,255,0.30)"/>
+                    <rect x="82" y="184" width="168" height="4" rx="2" fill="rgba(0,0,0,0.18)"/>
+
+                    <!-- CENTER BAND -->
+                    <rect x="154" y="141" width="26" height="58" fill="url(#gv-dark)"/>
+                    <rect x="156" y="143" width="6"  height="54" rx="2" fill="rgba(165,210,250,0.28)"/>
+                    <rect x="172" y="143" width="5"  height="54" rx="2" fill="rgba(90,145,195,0.22)"/>
+
+                    <!-- LEFT STRIKING FACE -->
+                    <ellipse cx="82"  cy="170" rx="15" ry="34" fill="url(#gv-face-l)"/>
+                    <ellipse cx="82"  cy="170" rx="11" ry="25" fill="none" stroke="rgba(70,115,162,0.5)"  stroke-width="1.5"/>
+                    <ellipse cx="82"  cy="170" rx="5.5" ry="12" fill="none" stroke="rgba(105,158,206,0.42)" stroke-width="1"/>
+                    <circle  cx="82"  cy="170" r="2.5" fill="rgba(85,135,185,0.6)"/>
+
+                    <!-- RIGHT FACE -->
+                    <ellipse cx="255" cy="170" rx="15" ry="34" fill="url(#gv-face-r)"/>
+                    <ellipse cx="255" cy="170" rx="11" ry="25" fill="none" stroke="rgba(70,115,162,0.5)"  stroke-width="1.5"/>
+                    <ellipse cx="255" cy="170" rx="5.5" ry="12" fill="none" stroke="rgba(105,158,206,0.42)" stroke-width="1"/>
+                    <circle  cx="255" cy="170" r="2.5" fill="rgba(85,135,185,0.6)"/>
+                </g>
+            </svg>
+        </div>
+        <div class="hero-content">
+            <img src="umtmunlogo.png" alt="UMTMUN Logo" class="hero-logo" />
+            <h1 class="hero-title">UMTMUN V</h1>
+            <div class="hero-dates">
+                <span class="hero-dates-roman">X - XI - XII</span>
+                <span class="hero-dates-month">September</span>
+                <span class="hero-dates-year">2026</span>
+            </div>
+            <button class="register-btn" id="registerBtn">Register Now</button>
+        </div>
+    </div>
+
+    <section class="about-section" id="about">
+        <h2>About UMTMUN</h2>
+        <p>UMTMUN is the official Model United Nations conference hosted by the University of Management and
+            Technology. It brings together passionate delegates from across the nation to debate pressing global issues,
+            develop diplomatic skills, and foster youth leadership through dynamic committee sessions and cultural
+            exchange.</p>
+    </section>
+
+    <section class="timer-section" id="timer">
+        <h2>Countdown to UMTMUN V</h2>
+        <div class="countdown" id="countdown"></div>
+    </section>
+
+    <section class="committees-section" id="committees">
+        <h2>Committees</h2>
+        <div class="committees-coming-soon">
+            <div class="coming-soon-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+            </div>
+            <h3>Coming Soon</h3>
+            <p>Committee details will be announced shortly. Stay tuned!</p>
+        </div>
+    </section>
+
+   <!-- Registration Modal -->
+<div class="modal" id="modal">
+  <div class="modal-content reg-modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h2>Register for UMTMUN V</h2>
+    <p class="reg-modal-subtitle">Select your registration category to continue</p>
+
+    <div class="registration-options">
+
+      <a href="https://tally.so/r/nppB41" target="_blank" rel="noopener" class="reg-option-btn">
+        <span class="reg-option-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21V13h6v8"/><path d="M9 9h.01"/><path d="M15 9h.01"/>
+          </svg>
+        </span>
+        <span class="reg-option-text">
+          <span class="reg-option-title">Institutional Delegation</span>
+          <span class="reg-option-desc">Register your school or university delegation</span>
+        </span>
+        <svg class="reg-option-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </a>
+
+      <a href="https://tally.so/r/meWv8l" target="_blank" rel="noopener" class="reg-option-btn">
+        <span class="reg-option-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 7h-3V5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1z"/><path d="M9 5h6v2H9z"/><path d="M3 12h18"/>
+          </svg>
+        </span>
+        <span class="reg-option-text">
+          <span class="reg-option-title">Secretariat</span>
+          <span class="reg-option-desc">Apply to join the organizing Secretariat team</span>
+        </span>
+        <svg class="reg-option-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </a>
+
+      <a href="https://tally.so/r/nppWy1" target="_blank" rel="noopener" class="reg-option-btn">
+        <span class="reg-option-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+        </span>
+        <span class="reg-option-text">
+          <span class="reg-option-title">Private / Observer</span>
+          <span class="reg-option-desc">Register as an individual or observer delegate</span>
+        </span>
+        <svg class="reg-option-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+    <footer class="footer">
+        &copy; [2026 Huzaifa Arif. All rights reserved]
+        <span class="footer-icons">
+            <a href="https://www.instagram.com/umt_mun/" target="_blank" class="footer-icon" aria-label="Instagram">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+                </svg>
+            </a>
+            <a href="mailto:mun@umt.edu.pk" class="footer-icon" aria-label="Email">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <polyline points="22,6 12,13 2,6" />
+                </svg>
+            </a>
+        </span>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
