@@ -630,7 +630,7 @@ body::before {
     height: 150px;
     border-radius: 50%;
     overflow: hidden;
-    background: #07112a;
+    background: transparent;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -648,7 +648,7 @@ body::before {
     object-fit: cover;
     object-position: center center;
     display: block;
-    mix-blend-mode: multiply;
+    filter: url(#remove-white);
 }
 
 @media (max-width: 580px) {
