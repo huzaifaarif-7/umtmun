@@ -660,6 +660,7 @@ body::before {
     display: flex;
     flex-direction: column;
     flex: 1;
+    text-align: center;
 }
 
 .committee-info h3 {
@@ -667,14 +668,14 @@ body::before {
     font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: 2px;
-    color: #9ec5e8;
+    color: #c0c0c0;
     margin: 0 0 10px;
     text-transform: uppercase;
 }
 
 .committee-info p {
     font-size: 0.88rem;
-    color: #8aadca;
+    color: #c0c0c0;
     line-height: 1.65;
     font-weight: 300;
     margin: 0 0 16px;
@@ -683,6 +684,7 @@ body::before {
 .committee-sg {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     border-top: 1px solid rgba(80, 140, 210, 0.15);
     padding-top: 14px;
