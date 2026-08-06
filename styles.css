@@ -648,7 +648,6 @@ body::before {
     object-fit: cover;
     object-position: center center;
     display: block;
-    filter: url(#remove-white);
 }
 
 @media (max-width: 580px) {
